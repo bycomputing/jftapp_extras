@@ -3,16 +3,12 @@ from django.template.defaultfilters import stringfilter
 
 register = template.Library()
 
-@register.filter("parasplit")
+@register.filter('parasplit')
 @stringfilter
 def parasplit_filter(value, autoescape=True):
-    paragraph_lines = []
-    for line in value.rsplit('\r\n\r\n'):
-        if line != '':
-            paragraph_lines.append(line)
-    return paragraph_lines
+    return value.rsplit('\n\n')
 
-@register.filter("wordslice")
+@register.filter('wordslice')
 @stringfilter
 def wordslice_(value, arg):
     value = value.split(' ')
